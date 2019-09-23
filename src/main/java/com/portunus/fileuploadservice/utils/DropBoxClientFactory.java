@@ -8,6 +8,7 @@ package com.portunus.fileuploadservice.utils;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.DeleteResult;
 import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
@@ -34,7 +35,8 @@ public class DropBoxClientFactory implements BaseCloudStoreCRUDFactory {
     //String accessToken;
 
     private DbxClientV2 client;
-
+//https://github.com/dropbox/dropbox-sdk-java/blob/master/examples/upload-file/src/main/java/com/dropbox/core/examples/upload_file/Main.java
+//http://blog.camilolopes.com.br/serie-dropbox-gerando-token-no-dropbox-api/
     
     public DropBoxClientFactory(@Value("${dropbox.accesstoken}") String accessToken) {
         // Create Dropbox client
@@ -99,7 +101,18 @@ public class DropBoxClientFactory implements BaseCloudStoreCRUDFactory {
     }
 
     @Override
-    public String removeFile(String filename) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String removeFile(String filename,String path) {
+        try
+        {
+            DeleteResult res = client.files().deleteV2(path+filename);
+            
+        }
+        catch (DbxException dbxe)
+        {
+            dbxe.printStackTrace();
+            return "Error:could not delete";
+        }
+    return "Successful:file deleted";
     }
+
 }

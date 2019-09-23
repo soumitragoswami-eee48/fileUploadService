@@ -53,8 +53,20 @@ public class DropBoxControllers {
             return new ResponseEntity(met.getListOfFilesAndFolders(), HttpStatus.OK);
         }
     }
+    
+   @RequestMapping(value = "/open/files", method = RequestMethod.DELETE)
+    public ResponseEntity<List<String>> deleteExistingfiles(
+    @RequestParam(name = "path", required = false, defaultValue = "/") String folderPath,
+            @RequestParam(name = "fileName", required = true) String fileName) {
+        String res = client.removeFile(fileName, folderPath);
+        if (res.contains("Error:")) {
+            return new ResponseEntity(res, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity(res, HttpStatus.OK);
+        }
+    }
 
-    @RequestMapping(value = "/open/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/open/files", method = RequestMethod.POST)
     public ResponseEntity<String> uploadFiles(
             @RequestParam(name = "path", required = false, defaultValue = "/") String folderPath,
             @RequestParam("file") MultipartFile uploadfile) {

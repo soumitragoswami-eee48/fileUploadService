@@ -1,0 +1,8 @@
+## YAML Template.
+---
+dropbox:
+    accesstoken: j2TjO0jzmaAAAAAAAAAADDK05zGIMCE6Ntekui5nvTMY6t-2ZvM3Xb2UNGwkCcdv
+multipart:
+    max-file-size: 100MB
+    max-request-size: 100MB
+storageProvider: dropbox

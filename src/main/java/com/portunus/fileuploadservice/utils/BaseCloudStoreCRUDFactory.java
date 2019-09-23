@@ -5,7 +5,6 @@
  */
 package com.portunus.fileuploadservice.utils;
 
-import com.dropbox.core.v2.DbxClientV2;
 import com.portunus.fileuploadservice.models.MyMetaData;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +21,6 @@ public interface BaseCloudStoreCRUDFactory {
 
     public abstract MyMetaData getExistingFilesMetaData();
 
-    public abstract String removeFile(String filename);
+    public abstract String removeFile(String filename,String path);
 
 }

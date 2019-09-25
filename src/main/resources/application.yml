@@ -2,7 +2,10 @@
 ---
 dropbox:
     accesstoken: j2TjO0jzmaAAAAAAAAAADDK05zGIMCE6Ntekui5nvTMY6t-2ZvM3Xb2UNGwkCcdv
-multipart:
-    max-file-size: 100MB
-    max-request-size: 100MB
+spring:
+    servlet:
+        multipart:
+            max-file-size:  128KB
+            max-request-size: 128KB
+            
 storageProvider: dropbox
